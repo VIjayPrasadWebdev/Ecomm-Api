@@ -1,0 +1,107 @@
+{
+  "openapi": "3.0.0",
+  "info": {
+    "version": "1.0",
+    "title": "Ecomm API"
+  },
+  "servers": [
+    {
+      "url": "http://localhost:3002"
+    }
+  ],
+  "components": {
+    "securitySchemes": {
+      "JWT": {
+        "in": "header",
+        "name": "Authorization",
+        "type": "apiKey"
+      }
+    }
+  },
+
+  "paths": {
+    "/api/user/signup": {
+      "post": {
+        "tags": ["Register"],
+        "summary": "Register",
+        "description": "User needs to register",
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "name": {
+                    "type": "string"
+                  },
+                  "email": {
+                    "type": "string"
+                  },
+                  "password": {
+                    "type": "string"
+                  }
+                }
+              }
+            }
+          }
+        },
+        "responses": {
+          "201": {
+            "description": "Data created"
+          },
+          "400": {
+            "description": "Invalid Credentials"
+          }
+        }
+      }
+    },
+    "/api/user/signin": {
+      "post": {
+        "tags": ["Login"],
+        "summary": "Login",
+        "description": "User needs to login",
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "email": {
+                    "type": "string"
+                  },
+                  "password": {
+                    "type": "string"
+                  }
+                }
+              }
+            }
+          }
+        },
+        "responses": {
+          "201": {
+            "description": "Data created"
+          },
+          "400": {
+            "description": "Invalid Credentials"
+          }
+        }
+      }
+    },
+    "/api/product": {
+      "get": {
+        "tags": ["Products"],
+        "summary": "Product Details",
+        "description": "E-comm product Details",
+        "security": [{ "JWT": {} }],
+        "responses": {
+          "200": {
+            "description": "OK"
+          },
+          "400": {
+            "description": "Un Authorized"
+          }
+        }
+      }
+    }
+  }
+}
