@@ -69,7 +69,7 @@ server.use((err, req, res, next) => {
   next();
 });
 server.listen(port, () => {
-  console.log("Server is connected");
+  console.log(`Server is connected at ${port}`);
   // ConnectMongoDB();
   MongooseViaMongodbConnect();
 });
